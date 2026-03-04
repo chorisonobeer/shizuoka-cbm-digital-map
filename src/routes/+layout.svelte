@@ -95,16 +95,16 @@
 	}
 
 	.app-body {
-		height: calc(100% - 50px - env(safe-area-inset-bottom));
+		height: calc(100% - 56px - env(safe-area-inset-bottom));
 	}
 
 	.app-footer {
 		position: absolute;
 		bottom: 0;
 		width: 100%;
-		height: 50px;
+		height: 56px;
 		background-color: #ffffff;
-		border-top: 1px solid #cccccc;
+		border-top: 1px solid #e5e7eb;
 		padding-bottom: env(safe-area-inset-bottom);
 		z-index: 9999;
 	}

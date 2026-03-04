@@ -1,50 +1,76 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import { Home, List, Search, Camera, Info } from 'lucide-svelte';
+
+	const navItems = [
+		{ href: '/', icon: Home, label: 'ホーム' },
+		{ href: '/list', icon: List, label: '一覧' },
+		{ href: '/category', icon: Search, label: 'カテゴリ' },
+		{ href: '/images', icon: Camera, label: '写真' },
+		{ href: '/about', icon: Info, label: '情報' },
+	];
+
+	function isActive(href: string): boolean {
+		if (href === '/') return page.url.pathname === '/';
+		return page.url.pathname.startsWith(href);
+	}
 </script>
 
-<div class="tabbar">
-	<ul>
-		<li><a href="/"><div class="icon"><Home size={20} /></div><div class="text">ホーム</div></a></li>
-		<li><a href="/list"><div class="icon"><List size={20} /></div><div class="text">一覧</div></a></li>
-		<li><a href="/category"><div class="icon"><Search size={20} /></div><div class="text">カテゴリ</div></a></li>
-		<li><a href="/images"><div class="icon"><Camera size={20} /></div><div class="text">写真から探す</div></a></li>
-		<li><a href="/about"><div class="icon"><Info size={20} /></div><div class="text">マップについて</div></a></li>
-	</ul>
-</div>
+<nav class="tabbar">
+	{#each navItems as item}
+		{@const active = isActive(item.href)}
+		<a
+			href={item.href}
+			class="nav-item"
+			class:active
+			aria-current={active ? 'page' : undefined}
+		>
+			<item.icon size={22} strokeWidth={active ? 2.5 : 1.8} />
+			<span class="nav-label">{item.label}</span>
+		</a>
+	{/each}
+</nav>
 
 <style>
 	.tabbar {
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
 		align-items: center;
+		justify-content: space-around;
 		height: 100%;
-		padding-right: 18px;
+		padding: 0 4px;
+		background-color: #ffffff;
 	}
 
-	ul {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
+	.nav-item {
 		display: flex;
-		width: 100%;
-	}
-
-	li {
-		width: 20%;
-		text-align: center;
-	}
-
-	a {
-		color: rgb(153, 153, 153);
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 2px;
+		flex: 1;
+		padding: 6px 0;
+		color: #9ca3af;
 		text-decoration: none;
+		transition: color 0.15s ease;
+		-webkit-tap-highlight-color: transparent;
 	}
 
-	.icon {
-		line-height: 20px;
+	.nav-item:hover {
+		color: #6b7280;
 	}
 
-	.text {
+	.nav-item.active {
+		color: var(--primary-color, #d2691e);
+	}
+
+	.nav-label {
 		font-size: 10px;
+		font-weight: 500;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.nav-item.active .nav-label {
+		font-weight: 600;
 	}
 </style>

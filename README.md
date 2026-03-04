@@ -1,81 +1,95 @@
-# Geolonia PWAマップ
+# 静岡クラフトビールマップ
 
-## Geolonia PWAマップ について
+静岡県のクラフトビールスポットを地図上で探せる PWA マップアプリです。
 
-Geolonia PWA は、GitHub と Google Sheets を使って、素早く PWA の地図アプリが作れるテンプレートです。
+## 技術スタック
 
-## フォーク
+- **フレームワーク**: SvelteKit (Svelte 5)
+- **パッケージマネージャ**: Bun
+- **スタイリング**: Tailwind CSS v4 + scoped CSS
+- **地図**: Geolonia Maps SDK
+- **アイコン**: lucide-svelte
+- **ホスティング**: Netlify (adapter-netlify)
+- **データソース**: Google Sheets (CSV 経由)
 
-まず、以下のリポジトリをフォークしてください。
-https://github.com/geoloniamaps/pwamap
-
-
-## サイト全体の設定
-
-`config.yml` を書き換えることでサイト全体の設定を変更できます。
-
-設定の例:
-```
-title: Geolonia PWAマップ
-description: Google スプレッドシートを更新するだけでオリジナルの地図アプリを作成できる\n「Geolonia PWAマップ」
-data_url: https://docs.google.com/spreadsheets/d/1_m8s4P5tdSeam3nzC5ruSfuvtSejQKEX1FiBeOWJN3E/pub?gid=1957425126&single=true&output=csv
-form_url: ""
-logo_image_url: https://geoloniamaps.github.io/pwamap/icon-pwamap.svg
-background_image_url: https://geoloniamaps.github.io/pwamap/geolonia_bgimage_1920_1080.png
-primary_color: "#d2691e"
-orderby: distance
-```
-
-- `title`: サイトのタイトルです。
-- `description`: サイトの概要文です。
-- `data_url`: アプリで読み込む CSV データまでの URL を記述してください。SSL は必須です。
-- `form_url`: データの追加/更新用の申請フォームの URL を記述してください。
-- `logo_image_url`: PCで表示した時のロゴ画像の URL を記述してください。
-- `background_image_url`: PCで表示した時の背景画像の URL を記述してください。
-- `primary_color`: サイトのテーマカラーを記述してください。（例: `#d2691e`）
-- `orderby`: 一覧ページのデータの並び順を指定します。`distance` で距離順に並び替えます。`time` で新着順に並び替えます。
-
-## スポットデータについて
-
-スポットは CSV 以下の方法でスポットデータファイルを作成して、`config.yml` にその CSV までの URL を設定してください。  
-
-- `緯度`、`経度`、`スポット名`、`カテゴリ` のみが必須で、これらのどれか一つでも入力されていないとアプリ上には表示されません。
-- なお、データは AJAX で常時読み込んでいますので、CSV が編集されるとほぼ同時にアプリ側にも反映されると考えてください。（キャッシュで多少タイムラグがあります。）
-
-### Google スプレッドシートを使う方法
-以下のスプレッドシートをコピーしてください。
-
-https://docs.google.com/spreadsheets/d/1_m8s4P5tdSeam3nzC5ruSfuvtSejQKEX1FiBeOWJN3E/edit?usp=sharing
-
-次に共有設定を行ってください。
-
-<img width="80%" alt="" src="https://github.com/user-attachments/assets/8a2f5031-ae90-4dd4-a2f1-4c2a1db70f42">
-
-
-Webへの公開設定で、「スポットデータ」シートを選択し、「カンマ区切り（.csv）」を選択して公開して下さい。
-
-
-<img width="80%" alt="" src="https://github.com/user-attachments/assets/7c437ceb-21a3-4f06-9abc-5f798c7ba44a">
-
-公開をクリックし、表示された URL を `config.yml` の `data_url` に指定して下さい。  
-GitHub Pages の設定をし、 コミットするとデータが反映されます。
-
-## 開発
-
-[Geolonia PWA マップ ユーザーマニュアル](https://blog.geolonia.com/2022/05/17/pwamap-manual-setup.html) の手順を実行、その後以下のコマンドを実行して下さい。
+## セットアップ
 
 ```shell
-$ git clone git@github.com:geoloniamaps/pwa.git
-$ cd pwa
-$ npm install
-$ npm start
+git clone git@github.com:<your-org>/shizuoka-cbm-digital-map.git
+cd shizuoka-cbm-digital-map
+bun install
 ```
 
-下の URL にアクセスして下さい。開発サーバーが立ち上がります。
+## 開発コマンド
 
-`http://localhost:3000/#/`
+```shell
+# 開発サーバー起動
+bun run dev
 
+# プロダクションビルド
+bun run build
 
-## 注意事項
-このプログラムは自由にカスタマイズ可能ですが、利用についてはサポート対象外となります。
+# ビルドプレビュー
+bun run preview
 
+# 型チェック
+bun run check
+```
+
+## サイト設定
+
+`src/lib/config.yml` でサイト全体の設定を変更できます。
+
+| キー | 説明 |
+|------|------|
+| `title` | サイトのタイトル |
+| `description` | サイトの概要文 |
+| `data_url` | CSV データの URL（SSL 必須） |
+| `form_url` | データ追加/更新用フォームの URL |
+| `logo_image_url` | PC 表示時のロゴ画像 URL |
+| `background_image_url` | PC 表示時の背景画像 URL |
+| `primary_color` | テーマカラー（例: `#d2691e`） |
+| `orderby` | 一覧の並び順（`distance`: 距離順 / `time`: 新着順） |
+
+## スポットデータ
+
+CSV に以下の必須カラムを含めてください: `緯度`, `経度`, `スポット名`, `カテゴリ`
+
+Google Sheets を使う場合:
+1. [テンプレート](https://docs.google.com/spreadsheets/d/1_m8s4P5tdSeam3nzC5ruSfuvtSejQKEX1FiBeOWJN3E/edit?usp=sharing) をコピー
+2. 「ウェブに公開」→「スポットデータ」シート → CSV 形式で公開
+3. 公開 URL を `config.yml` の `data_url` に設定
+
+## プロジェクト構造
+
+```
+src/
+├── lib/
+│   ├── components/   # Svelte コンポーネント
+│   ├── config.yml    # サイト設定
+│   ├── config.ts     # 設定読み込みロジック
+│   ├── types.ts      # 型定義
+│   └── utils.ts      # ユーティリティ関数
+├── routes/           # SvelteKit ファイルベースルーティング
+│   ├── +layout.svelte
+│   ├── +page.svelte  # ホーム（地図）
+│   ├── list/         # 一覧ページ
+│   ├── category/     # カテゴリページ
+│   ├── images/       # 写真ページ
+│   └── about/        # 情報ページ
+└── app.css           # グローバルスタイル（Tailwind）
+```
+
+## デプロイ
+
+Netlify にデプロイされます。`netlify.toml` で設定済み:
+
+```toml
+[build]
+  command = "bun run build"
+  publish = "build"
+```
+
+## ベース
+
+[Geolonia PWA マップ](https://github.com/geoloniamaps/pwamap) をベースにしています。

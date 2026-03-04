@@ -27,6 +27,10 @@ export async function load({ fetch }) {
 		if (!feature.longitude.match(/^[0-9]+(\.[0-9]+)?$/)) {
 			continue;
 		}
+		// logo_filename をパス付きに変換 (例: "logo_1.png" → "/images/logos/logo_1.png")
+		if (feature.logo_filename && !feature.logo_filename.startsWith('/')) {
+			feature.logo_filename = `/images/logos/${feature.logo_filename}`;
+		}
 		shopList.push({ index: i, ...feature });
 	}
 
