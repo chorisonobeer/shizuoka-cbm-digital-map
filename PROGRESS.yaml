@@ -2,22 +2,14 @@ project: shizuoka-cbm-digital-map
 last_updated: "2026-03-05"
 
 active:
-  branch: task/20260305-svelte-bun-migration
-  description: "React(CRA)+npm → SvelteKit+Bun+Tailwind+Netlify 全面マイグレーション"
+  branch: task/20260305-about-page-content
+  description: "Aboutページを静岡CBMコンテンツに書き換え"
   status: completed
   todos:
     completed:
-      - "Step 0: Bun + SvelteKit + Tailwind 初期化"
-      - "Step 1: config.yml → $lib/config.ts 移行"
-      - "Step 2: 型定義を英語カラム名の ShopData に更新"
-      - "Step 3: ユーティリティ関数を $lib/ に移植"
-      - "Step 4: SvelteKit ファイルベースルーティング構築"
-      - "Step 5: 全13 React コンポーネントを Svelte 5 に移植"
-      - "Step 6: Geolonia Maps SDK 統合"
-      - "Step 7: SCSS → Tailwind CSS + scoped CSS"
-      - "Step 8: PWA アセットを static/ に移動"
-      - "Step 9: netlify.toml + adapter-netlify 設定"
-      - "Step 10: .gitignore 更新、不要ファイル整理"
+      - "PDF表紙・紹介ページのテキスト抽出"
+      - "Aboutページ全面書き換え（紹介文・使い方・ハッシュタグ・サポーター募集）"
+      - "netlify build --offline 検証通過"
       - "報告書作成・コミット"
     pending:
       - "_old/ ディレクトリ削除"
@@ -25,9 +17,12 @@ active:
       - "a11y 警告修正（img/h2 の interactive event handling）"
       - "PWA Service Worker 設定 (@vite-pwa/sveltekit)"
       - "Netlify 本番デプロイ"
-      - "AboutUs ページの静岡CBM向けコンテンツ書き換え"
 
 history:
+  - branch: task/20260305-about-page-content
+    description: "Aboutページを静岡CBMコンテンツに書き換え"
+    status: completed
+    date: "2026-03-05"
   - branch: task/20260305-pwamap-migration
     description: "Geolonia PWAMapテンプレートを静岡クラフトビールマップに変換"
     status: completed
