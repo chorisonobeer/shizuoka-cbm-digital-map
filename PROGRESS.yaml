@@ -1,19 +1,12 @@
 project: shizuoka-cbm-digital-map
-last_updated: "2026-03-05"
+last_updated: "2026-03-06"
 
 active:
-  branch: task/20260305-cache-splash
-  description: "地図キャッシュ化・スプラッシュ画面・全タブCSS切替・About改修"
-  status: completed
+  branch: master
+  description: "イベントタブ追加完了"
+  status: idle
   todos:
-    completed:
-      - "shopStore.svelte.ts リアクティブストア新規作成（$state rune）"
-      - "+layout.ts からCSV取得削除、configのみに簡素化"
-      - "+layout.svelte でMap永続化（CSS display制御）+ ストア初期化"
-      - "list/images ページをストア直接参照に変更"
-      - "Map.svelte に visible prop + resize対応"
-      - "app.html にスプラッシュ画面（splash_1.webp全画面）"
-      - "netlify build --offline 検証通過"
+    completed: []
     pending:
       - "_old/ ディレクトリ削除"
       - "CLAUDE.md アーキテクチャセクション更新"
@@ -21,6 +14,10 @@ active:
       - "Netlify 本番デプロイ"
 
 history:
+  - branch: task/20260305-event-page
+    description: "イベントタブ追加（CSV読込・検索・フィルタ・詳細モーダル・優先度ソート）"
+    status: completed
+    date: "2026-03-05"
   - branch: task/20260305-cache-splash
     description: "地図キャッシュ化・スプラッシュ画面・全タブCSS切替・About改修"
     status: completed
