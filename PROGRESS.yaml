@@ -2,18 +2,16 @@ project: shizuoka-cbm-digital-map
 last_updated: "2026-03-05"
 
 active:
-  branch: task/20260305-home-filter-ui
-  description: "ホーム画面フィルタUI追加・カテゴリタブ廃止"
+  branch: task/20260305-list-detail-enhancement
+  description: "一覧タブ・詳細ページ情報拡充＋デザインリニューアル"
   status: completed
   todos:
     completed:
-      - "Tabbarから「カテゴリ」タブ削除"
-      - "isOpen.ts 営業中判定ロジック作成"
-      - "FilterBar.svelte 新規作成（地域・タイプ・営業中）"
-      - "ホーム画面にFilterBar配置 + Map連携"
-      - "/categoryルート削除"
-      - "フィルタ項目に複合条件での該当件数表示"
-      - "ナビ・フィルタバー背景色を#E7E7E5に変更"
+      - "types.ts に0/1フラグ全項目を型定義追加"
+      - "ShopListItem.svelte 完全書き換え（カード型UI・情報拡充）"
+      - "Shop.svelte 完全書き換え（CSV全項目表示・セクション構造化）"
+      - "list/+page.svelte リデザイン（グレー背景・カードリスト）"
+      - "タイポグラフィ階層設計（理論ベース・ジャンプ率1.8x）"
       - "netlify build --offline 検証通過"
       - "報告書作成・コミット"
     pending:
@@ -24,6 +22,10 @@ active:
       - "Netlify 本番デプロイ"
 
 history:
+  - branch: task/20260305-list-detail-enhancement
+    description: "一覧タブ・詳細ページ情報拡充＋デザインリニューアル"
+    status: completed
+    date: "2026-03-05"
   - branch: task/20260305-home-filter-ui
     description: "ホーム画面フィルタUI追加・カテゴリタブ廃止"
     status: completed

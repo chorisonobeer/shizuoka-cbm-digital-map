@@ -20,8 +20,31 @@ export type ShopData = {
 	instagram: string;
 	twitter: string;
 	facebook: string;
+	line: string;
 	categories: string;
 	brewery_name: string;
+	// 0/1 フラグ項目
+	shizuoka_beer: string;
+	guest_beer: string;
+	tasting: string;
+	free_wifi: string;
+	available_in_english: string;
+	watching_sports: string;
+	e_money: string;
+	credit_card: string;
+	cover_charge: string;
+	parking_lot: string;
+	tobacco: string;
+	no_smoking: string;
+	separation: string;
+	smoking: string;
+	brewery_tour: string;
+	reservation_required: string;
+	mail_required: string;
+	group_ok: string;
+	kegs: string;
+	bottles: string;
+	cans: string;
 	[key: string]: string | number | undefined;
 };
 

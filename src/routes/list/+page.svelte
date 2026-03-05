@@ -101,20 +101,20 @@
 	onscroll={handleScroll}
 >
 	{#if queryCategory}
-		<div class="shop-list-category">{`地域：「${queryCategory}」`}</div>
+		<div class="filter-label">地域：{queryCategory}</div>
 	{/if}
 	{#if queryTag}
-		<div class="shop-list-category">{`タイプ：「${queryTag}」`}</div>
+		<div class="filter-label">タイプ：{queryTag}</div>
 	{/if}
 
-	{#each list as item, index (index)}
-		<div class="shop">
+	<div class="card-list">
+		{#each list as item, index (index)}
 			<ShopListItem data={item} {popupHandler} {queryCategory} />
-		</div>
-	{/each}
+		{/each}
+	</div>
 
 	{#if hasMore}
-		<div class="loader">場所一覧を読み込み中です...</div>
+		<div class="loader">読み込み中...</div>
 	{/if}
 
 	{#if selectedShop}
@@ -124,34 +124,30 @@
 
 <style>
 	.shop-list {
-		color: #555555;
-		box-sizing: border-box;
 		height: 100%;
-		overflow: auto;
+		overflow-y: auto;
+		background: #f3f4f6;
+		-webkit-overflow-scrolling: touch;
 	}
 
-	.shop {
-		border-bottom: 1px solid #eeeeee;
-		padding: 16px;
-		font-size: 12px;
-		position: relative;
+	.filter-label {
+		padding: 10px 16px 0;
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: #6b7280;
 	}
 
-	.shop:nth-child(even) {
-		background-color: #f7f7f7;
-	}
-
-	.shop-list-category {
-		margin: 20px 10px;
-		font-size: 18px;
+	.card-list {
 		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 10px 12px;
 	}
 
 	.loader {
-		width: 100%;
-		height: 200px;
 		text-align: center;
-		position: relative;
-		top: 100px;
+		padding: 32px 0;
+		font-size: 0.82rem;
+		color: #9ca3af;
 	}
 </style>
