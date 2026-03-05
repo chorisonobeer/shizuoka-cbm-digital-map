@@ -48,4 +48,36 @@ export type ShopData = {
 	[key: string]: string | number | undefined;
 };
 
+export type EventStatus = 'upcoming' | 'ongoing' | 'ended';
+
+export type EventData = {
+	index: number;
+	表示優先度: string;
+	イベント名: string;
+	開催期間: string;
+	'開始/終了時間': string;
+	場所: string;
+	緯度: string;
+	経度: string;
+	説明文: string;
+	画像URL1: string;
+	画像URL2: string;
+	画像URL3: string;
+	画像URL4: string;
+	画像URL5: string;
+	画像URL6: string;
+	公式サイト: string;
+	Instagram: string;
+	Facebook: string;
+	X: string;
+	主催者名: string;
+	タグ: string;
+	非公開: string;
+	参加ブルワリー: string;
+	status: EventStatus;
+	startDate: Date | null;
+	endDate: Date | null;
+	[key: string]: string | number | Date | null | undefined;
+};
+
 export type LngLat = [number, number];

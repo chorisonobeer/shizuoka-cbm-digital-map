@@ -1,6 +1,7 @@
-title: 静岡クラフトビールマップ
-description: 静岡県のクラフトビールスポット44店舗を掲載したデジタルマップ
+title: 静岡CRAFT BEER MAP
+description: 静岡県のクラフトビールスポットを掲載したデジタルマップ
 data_url: https://docs.google.com/spreadsheets/d/e/2PACX-1vQcc_OkRRExZvZe_rPCqARpGzZLVTaOUaDVnf8YBX_5C_Cx7ArO7P3K0koRPpvNxn48OMC8feHVVRxL/pub?gid=2007978075&single=true&output=csv
+data_url_event: https://docs.google.com/spreadsheets/d/e/2PACX-1vQcc_OkRRExZvZe_rPCqARpGzZLVTaOUaDVnf8YBX_5C_Cx7ArO7P3K0koRPpvNxn48OMC8feHVVRxL/pub?gid=96849667&single=true&output=csv
 form_url:
 logo_image_url: https://geoloniamaps.github.io/pwamap/icon-pwamap.svg
 background_image_url: https://geoloniamaps.github.io/pwamap/geolonia_bgimage_1920_1080.png
