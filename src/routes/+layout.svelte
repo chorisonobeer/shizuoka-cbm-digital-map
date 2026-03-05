@@ -1,17 +1,21 @@
 <script lang="ts">
 	import '../app.css';
-	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import Tabbar from '$lib/components/Tabbar.svelte';
 	import About from '$lib/components/About.svelte';
 	import InstallBanner from '$lib/components/InstallBanner.svelte';
 	import Map from '$lib/components/Map.svelte';
 	import FilterBar from '$lib/components/FilterBar.svelte';
+	import ListPage from '$lib/components/ListPage.svelte';
+	import ImagesPage from '$lib/components/ImagesPage.svelte';
+	import AboutPage from '$lib/components/AboutPage.svelte';
 	import { shopStore } from '$lib/shopStore.svelte';
 	import { isOpen } from '$lib/isOpen';
 	import type { ShopData } from '$lib/types';
 
-	let { data, children } = $props();
+	let { data } = $props();
+
+	let activeTab = $state('home');
 
 	onMount(() => {
 		shopStore.initialize(fetch);
@@ -33,8 +37,6 @@
 	let selectedCategory = $state('');
 	let openNow = $state(false);
 
-	const isHome = $derived(page.url.pathname === '/');
-
 	const filteredShops = $derived(() => {
 		let shops = shopStore.shopList;
 		if (selectedArea) {
@@ -51,6 +53,10 @@
 		}
 		return shops;
 	});
+
+	function handleTabChange(tab: string) {
+		activeTab = tab;
+	}
 </script>
 
 <svelte:head>
@@ -63,8 +69,8 @@
 		<About config={data.config} />
 		<div class="app">
 			<div class="app-body">
-				<!-- ホーム用: FilterBar + Map（常時マウント、CSS表示制御） -->
-				<div class="home-container" class:visible={isHome}>
+				<!-- 全タブを常時マウント、CSS display切替で瞬時遷移 -->
+				<div class="tab-page" class:visible={activeTab === 'home'}>
 					<FilterBar
 						shops={shopStore.shopList}
 						bind:selectedArea
@@ -72,17 +78,24 @@
 						bind:openNow
 					/>
 					<div class="map-area">
-						<Map data={filteredShops()} visible={isHome} />
+						<Map data={filteredShops()} visible={activeTab === 'home'} />
 					</div>
 				</div>
 
-				<!-- 他ページ用: ルーティングコンテンツ -->
-				{#if !isHome}
-					{@render children()}
-				{/if}
+				<div class="tab-page" class:visible={activeTab === 'list'}>
+					<ListPage />
+				</div>
+
+				<div class="tab-page tab-page-block" class:visible={activeTab === 'images'}>
+					<ImagesPage />
+				</div>
+
+				<div class="tab-page tab-page-block" class:visible={activeTab === 'about'}>
+					<AboutPage />
+				</div>
 			</div>
 			<div class="app-footer">
-				<Tabbar />
+				<Tabbar {activeTab} onchange={handleTabChange} />
 			</div>
 		</div>
 	</div>
@@ -161,6 +174,7 @@
 
 	.app-body {
 		height: calc(100% - 56px - env(safe-area-inset-bottom));
+		position: relative;
 	}
 
 	.app-footer {
@@ -174,14 +188,23 @@
 		z-index: 9999;
 	}
 
-	.home-container {
+	/* 全タブページ共通: 常時マウント、CSS切替 */
+	.tab-page {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 		display: none;
 		flex-direction: column;
-		height: 100%;
 	}
 
-	.home-container.visible {
+	.tab-page.visible {
 		display: flex;
+	}
+
+	.tab-page-block.visible {
+		display: block;
 	}
 
 	.map-area {

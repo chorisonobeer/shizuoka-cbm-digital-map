@@ -1,32 +1,34 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import { Home, List, Camera, Info } from 'lucide-svelte';
 
-	const navItems = [
-		{ href: '/', icon: Home, label: 'ホーム' },
-		{ href: '/list', icon: List, label: '一覧' },
-		{ href: '/images', icon: Camera, label: '写真' },
-		{ href: '/about', icon: Info, label: '情報' },
-	];
+	let {
+		activeTab = 'home',
+		onchange
+	}: {
+		activeTab: string;
+		onchange: (tab: string) => void;
+	} = $props();
 
-	function isActive(href: string): boolean {
-		if (href === '/') return page.url.pathname === '/';
-		return page.url.pathname.startsWith(href);
-	}
+	const navItems = [
+		{ id: 'home', icon: Home, label: 'ホーム' },
+		{ id: 'list', icon: List, label: '一覧' },
+		{ id: 'images', icon: Camera, label: '写真' },
+		{ id: 'about', icon: Info, label: '情報' },
+	];
 </script>
 
 <nav class="tabbar">
 	{#each navItems as item}
-		{@const active = isActive(item.href)}
-		<a
-			href={item.href}
+		{@const active = activeTab === item.id}
+		<button
 			class="nav-item"
 			class:active
 			aria-current={active ? 'page' : undefined}
+			onclick={() => onchange(item.id)}
 		>
 			<item.icon size={22} strokeWidth={active ? 2.5 : 1.8} />
 			<span class="nav-label">{item.label}</span>
-		</a>
+		</button>
 	{/each}
 </nav>
 
@@ -52,6 +54,10 @@
 		text-decoration: none;
 		transition: color 0.15s ease;
 		-webkit-tap-highlight-color: transparent;
+		background: none;
+		border: none;
+		cursor: pointer;
+		font-family: inherit;
 	}
 
 	.nav-item:hover {
