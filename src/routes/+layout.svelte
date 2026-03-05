@@ -1,10 +1,56 @@
 <script lang="ts">
 	import '../app.css';
+	import { page } from '$app/state';
+	import { onMount } from 'svelte';
 	import Tabbar from '$lib/components/Tabbar.svelte';
 	import About from '$lib/components/About.svelte';
 	import InstallBanner from '$lib/components/InstallBanner.svelte';
+	import Map from '$lib/components/Map.svelte';
+	import FilterBar from '$lib/components/FilterBar.svelte';
+	import { shopStore } from '$lib/shopStore.svelte';
+	import { isOpen } from '$lib/isOpen';
+	import type { ShopData } from '$lib/types';
 
 	let { data, children } = $props();
+
+	onMount(() => {
+		shopStore.initialize(fetch);
+	});
+
+	// スプラッシュ: データ取得完了でフェードアウト
+	$effect(() => {
+		if (shopStore.isLoaded) {
+			const splash = document.getElementById('splash');
+			if (splash) {
+				splash.classList.add('fade-out');
+				setTimeout(() => splash.remove(), 600);
+			}
+		}
+	});
+
+	// フィルタ状態（レイアウトで保持して永続化）
+	let selectedArea = $state('');
+	let selectedCategory = $state('');
+	let openNow = $state(false);
+
+	const isHome = $derived(page.url.pathname === '/');
+
+	const filteredShops = $derived(() => {
+		let shops = shopStore.shopList;
+		if (selectedArea) {
+			shops = shops.filter((s: ShopData) => s.area === selectedArea);
+		}
+		if (selectedCategory) {
+			shops = shops.filter((s: ShopData) => {
+				if (!s.categories) return false;
+				return s.categories.split(',').map((t: string) => t.trim()).includes(selectedCategory);
+			});
+		}
+		if (openNow) {
+			shops = shops.filter((s: ShopData) => isOpen(s.hours_structured) === true);
+		}
+		return shops;
+	});
 </script>
 
 <svelte:head>
@@ -17,7 +63,23 @@
 		<About config={data.config} />
 		<div class="app">
 			<div class="app-body">
-				{@render children()}
+				<!-- ホーム用: FilterBar + Map（常時マウント、CSS表示制御） -->
+				<div class="home-container" class:visible={isHome}>
+					<FilterBar
+						shops={shopStore.shopList}
+						bind:selectedArea
+						bind:selectedCategory
+						bind:openNow
+					/>
+					<div class="map-area">
+						<Map data={filteredShops()} visible={isHome} />
+					</div>
+				</div>
+
+				<!-- 他ページ用: ルーティングコンテンツ -->
+				{#if !isHome}
+					{@render children()}
+				{/if}
 			</div>
 			<div class="app-footer">
 				<Tabbar />
@@ -110,6 +172,21 @@
 		border-top: 1px solid #d1d5db;
 		padding-bottom: env(safe-area-inset-bottom);
 		z-index: 9999;
+	}
+
+	.home-container {
+		display: none;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	.home-container.visible {
+		display: flex;
+	}
+
+	.map-area {
+		flex: 1;
+		min-height: 0;
 	}
 
 	@media only screen and (max-width: 960px) {

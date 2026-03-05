@@ -7,7 +7,7 @@
 	import Shop from './Shop.svelte';
 	import type { ShopData } from '$lib/types';
 
-	let { data }: { data: ShopData[] } = $props();
+	let { data, visible = true }: { data: ShopData[]; visible?: boolean } = $props();
 
 	let mapNode: HTMLDivElement;
 	let mapObject: any = $state(null);
@@ -123,6 +123,13 @@
 			source.setData(geojson);
 		}
 	}
+
+	// display:none → visible 復帰時にリサイズ
+	$effect(() => {
+		if (visible && mapObject) {
+			mapObject.resize();
+		}
+	});
 
 	$effect(() => {
 		if (mapObject && data.length > 0) {

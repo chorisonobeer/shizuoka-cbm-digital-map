@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import ShopListItem from '$lib/components/ShopListItem.svelte';
 	import Shop from '$lib/components/Shop.svelte';
+	import { shopStore } from '$lib/shopStore.svelte';
 	import { askGeolocationPermission } from '$lib/geolocation';
 	import * as turf from '@turf/turf';
 	import type { ShopData } from '$lib/types';
@@ -41,7 +42,7 @@
 	}
 
 	$effect(() => {
-		let shops = pageData.shopList;
+		let shops = shopStore.shopList;
 		if (queryCategory) {
 			shops = shops.filter((s: ShopData) => s.area === queryCategory);
 		}

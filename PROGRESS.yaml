@@ -2,18 +2,18 @@ project: shizuoka-cbm-digital-map
 last_updated: "2026-03-05"
 
 active:
-  branch: task/20260305-pwa-implementation
-  description: "PWA実装（Service Worker + manifest + インストールバナー）"
+  branch: task/20260305-cache-splash
+  description: "地図キャッシュ化・スプラッシュ画面・データストアリアクティブ化"
   status: completed
   todos:
     completed:
-      - "manifest.json をブランド情報に更新"
-      - "最小Service Worker作成（static/sw.js）"
-      - "app.html にSW登録・Appleメタタグ追加"
-      - "InstallBanner.svelte 新規作成（24h抑制付き）"
-      - "+layout.svelte にバナー組み込み"
+      - "shopStore.svelte.ts リアクティブストア新規作成（$state rune）"
+      - "+layout.ts からCSV取得削除、configのみに簡素化"
+      - "+layout.svelte でMap永続化（CSS display制御）+ ストア初期化"
+      - "list/images ページをストア直接参照に変更"
+      - "Map.svelte に visible prop + resize対応"
+      - "app.html にスプラッシュ画面（splash_1.webp全画面）"
       - "netlify build --offline 検証通過"
-      - "報告書作成・コミット"
     pending:
       - "_old/ ディレクトリ削除"
       - "CLAUDE.md アーキテクチャセクション更新"
@@ -21,6 +21,10 @@ active:
       - "Netlify 本番デプロイ"
 
 history:
+  - branch: task/20260305-cache-splash
+    description: "地図キャッシュ化・スプラッシュ画面・データストアリアクティブ化"
+    status: completed
+    date: "2026-03-05"
   - branch: task/20260305-pwa-implementation
     description: "PWA実装（Service Worker + manifest + インストールバナー）"
     status: completed

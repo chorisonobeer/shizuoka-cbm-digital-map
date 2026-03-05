@@ -1,12 +1,11 @@
 <script lang="ts">
 	import Shop from '$lib/components/Shop.svelte';
+	import { shopStore } from '$lib/shopStore.svelte';
 	import type { ShopData } from '$lib/types';
-
-	let { data: pageData } = $props();
 
 	let selectedShop: ShopData | undefined = $state(undefined);
 
-	const imageItems = $derived(pageData.shopList.filter((item: ShopData) => item.logo_filename));
+	const imageItems = $derived(shopStore.shopList.filter((item: ShopData) => item.logo_filename));
 
 	function popupHandler(shop: ShopData) {
 		selectedShop = shop;
