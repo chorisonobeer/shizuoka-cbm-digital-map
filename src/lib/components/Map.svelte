@@ -11,6 +11,7 @@
 
 	let mapNode: HTMLDivElement;
 	let mapObject: any = $state(null);
+	let markersInitialized = $state(false);
 	let selectedShop: ShopData | undefined = $state(undefined);
 
 	const hideLayers = [
@@ -29,7 +30,7 @@
 		}
 	}
 
-	function addMarkers(map: any, shopData: ShopData[]) {
+	function initMarkers(map: any, shopData: ShopData[]) {
 		if (!map || shopData.length === 0) return;
 
 		map.on('render', () => {
@@ -111,12 +112,25 @@
 			});
 
 			setCluster(map);
+			markersInitialized = true;
 		});
+	}
+
+	function updateMapData(map: any, shopData: ShopData[]) {
+		const geojson = toGeoJson(shopData);
+		const source = map.getSource('shops');
+		if (source) {
+			source.setData(geojson);
+		}
 	}
 
 	$effect(() => {
 		if (mapObject && data.length > 0) {
-			addMarkers(mapObject, data);
+			if (!markersInitialized) {
+				initMarkers(mapObject, data);
+			} else {
+				updateMapData(mapObject, data);
+			}
 			const geojson = toGeoJson(data);
 			const bounds = geojsonExtent(geojson);
 			if (bounds) {

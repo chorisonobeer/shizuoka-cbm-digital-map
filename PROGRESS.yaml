@@ -2,13 +2,18 @@ project: shizuoka-cbm-digital-map
 last_updated: "2026-03-05"
 
 active:
-  branch: task/20260305-about-page-content
-  description: "Aboutページを静岡CBMコンテンツに書き換え"
+  branch: task/20260305-home-filter-ui
+  description: "ホーム画面フィルタUI追加・カテゴリタブ廃止"
   status: completed
   todos:
     completed:
-      - "PDF表紙・紹介ページのテキスト抽出"
-      - "Aboutページ全面書き換え（紹介文・使い方・ハッシュタグ・サポーター募集）"
+      - "Tabbarから「カテゴリ」タブ削除"
+      - "isOpen.ts 営業中判定ロジック作成"
+      - "FilterBar.svelte 新規作成（地域・タイプ・営業中）"
+      - "ホーム画面にFilterBar配置 + Map連携"
+      - "/categoryルート削除"
+      - "フィルタ項目に複合条件での該当件数表示"
+      - "ナビ・フィルタバー背景色を#E7E7E5に変更"
       - "netlify build --offline 検証通過"
       - "報告書作成・コミット"
     pending:
@@ -19,6 +24,10 @@ active:
       - "Netlify 本番デプロイ"
 
 history:
+  - branch: task/20260305-home-filter-ui
+    description: "ホーム画面フィルタUI追加・カテゴリタブ廃止"
+    status: completed
+    date: "2026-03-05"
   - branch: task/20260305-about-page-content
     description: "Aboutページを静岡CBMコンテンツに書き換え"
     status: completed

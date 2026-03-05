@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { Home, List, Search, Camera, Info } from 'lucide-svelte';
+	import { Home, List, Camera, Info } from 'lucide-svelte';
 
 	const navItems = [
 		{ href: '/', icon: Home, label: 'ホーム' },
 		{ href: '/list', icon: List, label: '一覧' },
-		{ href: '/category', icon: Search, label: 'カテゴリ' },
 		{ href: '/images', icon: Camera, label: '写真' },
 		{ href: '/about', icon: Info, label: '情報' },
 	];
@@ -38,7 +37,7 @@
 		justify-content: space-around;
 		height: 100%;
 		padding: 0 4px;
-		background-color: #ffffff;
+		background-color: #E7E7E5;
 	}
 
 	.nav-item {

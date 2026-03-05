@@ -103,8 +103,8 @@
 		bottom: 0;
 		width: 100%;
 		height: 56px;
-		background-color: #ffffff;
-		border-top: 1px solid #e5e7eb;
+		background-color: #E7E7E5;
+		border-top: 1px solid #d1d5db;
 		padding-bottom: env(safe-area-inset-bottom);
 		z-index: 9999;
 	}
