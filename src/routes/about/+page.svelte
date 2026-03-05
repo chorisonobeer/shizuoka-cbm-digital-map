@@ -107,7 +107,7 @@
 	.branding .logo {
 		font-size: 24px;
 		font-weight: bold;
-		color: #d2691e;
+		color: var(--primary-color, #1a2e44);
 	}
 
 	.branding .subtitle {
@@ -136,8 +136,8 @@
 		font-size: 1.3rem;
 		font-weight: bold;
 		margin-bottom: 12px;
-		color: #1a5276;
-		border-bottom: 2px solid #d2691e;
+		color: var(--primary-color, #1a2e44);
+		border-bottom: 2px solid var(--sub-color, #c8a96e);
 		padding-bottom: 6px;
 	}
 
@@ -166,7 +166,7 @@
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
-		background: #1a5276;
+		background: var(--primary-color, #1a2e44);
 		color: #fff;
 		display: flex;
 		align-items: center;
@@ -195,7 +195,7 @@
 	}
 
 	.tag {
-		background: #1a5276;
+		background: var(--primary-color, #1a2e44);
 		color: #fff;
 		padding: 4px 12px;
 		border-radius: 16px;
@@ -208,7 +208,7 @@
 	}
 
 	.supporter p.contact a {
-		color: #1a5276;
+		color: var(--primary-color, #1a2e44);
 		font-weight: bold;
 	}
 

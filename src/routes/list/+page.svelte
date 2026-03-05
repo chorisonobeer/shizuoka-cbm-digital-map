@@ -114,7 +114,7 @@
 	</div>
 
 	{#if hasMore}
-		<div class="loader">読み込み中...</div>
+		<div class="loader"><span class="spinner"></span></div>
 	{/if}
 
 	{#if selectedShop}
@@ -126,7 +126,7 @@
 	.shop-list {
 		height: 100%;
 		overflow-y: auto;
-		background: #f3f4f6;
+		background: var(--bg-color, #f5f0e8);
 		-webkit-overflow-scrolling: touch;
 	}
 
@@ -145,9 +145,21 @@
 	}
 
 	.loader {
-		text-align: center;
+		display: flex;
+		justify-content: center;
 		padding: 32px 0;
-		font-size: 0.82rem;
-		color: #9ca3af;
+	}
+
+	.spinner {
+		width: 28px;
+		height: 28px;
+		border: 3px solid #e5e7eb;
+		border-top-color: var(--primary-color, #1a2e44);
+		border-radius: 50%;
+		animation: spin 0.7s linear infinite;
+	}
+
+	@keyframes spin {
+		to { transform: rotate(360deg); }
 	}
 </style>

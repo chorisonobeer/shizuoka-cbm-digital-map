@@ -120,7 +120,7 @@
 		display: flex;
 		gap: 6px;
 		padding: 8px;
-		background: #E7E7E5;
+		background: var(--bg-color, #f5f0e8);
 		border-bottom: 1px solid #d1d5db;
 		align-items: center;
 		z-index: 10;
@@ -141,10 +141,10 @@
 	.filter-toggle {
 		padding: 6px 12px;
 		font-size: 13px;
-		border: 2px solid var(--primary-color, #d2691e);
+		border: 2px solid var(--primary-color, #1a2e44);
 		border-radius: 20px;
 		background: white;
-		color: var(--primary-color, #d2691e);
+		color: var(--primary-color, #1a2e44);
 		cursor: pointer;
 		white-space: nowrap;
 		transition: all 0.15s ease;
@@ -152,7 +152,7 @@
 	}
 
 	.filter-toggle.active {
-		background: var(--primary-color, #d2691e);
+		background: var(--primary-color, #1a2e44);
 		color: white;
 	}
 </style>

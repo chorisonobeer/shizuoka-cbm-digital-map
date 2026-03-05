@@ -37,7 +37,7 @@
 		justify-content: space-around;
 		height: 100%;
 		padding: 0 4px;
-		background-color: #E7E7E5;
+		background-color: var(--bg-color, #f5f0e8);
 	}
 
 	.nav-item {
@@ -59,7 +59,7 @@
 	}
 
 	.nav-item.active {
-		color: var(--primary-color, #d2691e);
+		color: var(--primary-color, #1a2e44);
 	}
 
 	.nav-label {

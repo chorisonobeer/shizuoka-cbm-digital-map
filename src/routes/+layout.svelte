@@ -35,7 +35,7 @@
 	}
 
 	:global(a) {
-		color: #007bff;
+		color: var(--accent-color, #3a6b8c);
 		text-decoration: none;
 	}
 
@@ -103,7 +103,7 @@
 		bottom: 0;
 		width: 100%;
 		height: 56px;
-		background-color: #E7E7E5;
+		background-color: var(--bg-color, #f5f0e8);
 		border-top: 1px solid #d1d5db;
 		padding-bottom: env(safe-area-inset-bottom);
 		z-index: 9999;

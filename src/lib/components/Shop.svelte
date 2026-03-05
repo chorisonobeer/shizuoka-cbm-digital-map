@@ -290,10 +290,12 @@
 				></div>
 				<a
 					class="directions-btn"
-					href={`http://maps.apple.com/?q=${shop.latitude},${shop.longitude}`}
+					href={`https://www.google.com/maps/dir/?api=1&destination=${shop.latitude},${shop.longitude}`}
+					target="_blank"
+					rel="noopener noreferrer"
 				>
 					<MapPin size={16} />
-					道順を表示
+					ここまでのルートを見る
 				</a>
 			</section>
 		</div>
@@ -321,7 +323,7 @@
 		position: absolute;
 		inset: 0;
 		z-index: 10;
-		background: #f5f5f4;
+		background: var(--bg-color, #f5f0e8);
 		display: flex;
 		flex-direction: column;
 	}

@@ -2,16 +2,16 @@ project: shizuoka-cbm-digital-map
 last_updated: "2026-03-05"
 
 active:
-  branch: task/20260305-list-detail-enhancement
-  description: "一覧タブ・詳細ページ情報拡充＋デザインリニューアル"
+  branch: task/20260305-detail-route-button
+  description: "詳細画面ルートボタン改修・ブランドカラー全面刷新・ローディングUI改善"
   status: completed
   todos:
     completed:
-      - "types.ts に0/1フラグ全項目を型定義追加"
-      - "ShopListItem.svelte 完全書き換え（カード型UI・情報拡充）"
-      - "Shop.svelte 完全書き換え（CSV全項目表示・セクション構造化）"
-      - "list/+page.svelte リデザイン（グレー背景・カードリスト）"
-      - "タイポグラフィ階層設計（理論ベース・ジャンプ率1.8x）"
+      - "ルートボタン テキスト変更（道順を表示→ここまでのルートを見る）"
+      - "ルートボタン URL変更（Apple Maps→Google Maps）"
+      - "ローディングUI スピナーアニメーション化"
+      - "ブランドカラー6色体系をCSS変数定義"
+      - "全10ファイルのカラー値を新体系に統一"
       - "netlify build --offline 検証通過"
       - "報告書作成・コミット"
     pending:
@@ -22,6 +22,10 @@ active:
       - "Netlify 本番デプロイ"
 
 history:
+  - branch: task/20260305-detail-route-button
+    description: "詳細画面ルートボタン改修・ブランドカラー全面刷新・ローディングUI改善"
+    status: completed
+    date: "2026-03-05"
   - branch: task/20260305-list-detail-enhancement
     description: "一覧タブ・詳細ページ情報拡充＋デザインリニューアル"
     status: completed
