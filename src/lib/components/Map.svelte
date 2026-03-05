@@ -11,24 +11,13 @@
 
 	let mapNode: HTMLDivElement;
 	let mapObject: any = $state(null);
-	let markersInitialized = $state(false);
+	let layersInitialized = $state(false);
 	let selectedShop: ShopData | undefined = $state(undefined);
 	let isWarmStyle = $state(true);
 	let toggleBtn: HTMLButtonElement;
-	let markers: any[] = [];
 
 	const WARM_STYLE = '/map-style.json';
 	const BASIC_STYLE = 'geolonia/basic';
-
-	function getCSSVar(name: string, fallback: string): string {
-		return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
-	}
-
-	const CATEGORY_COLORS: Record<string, string> = {
-		'醸造所': getCSSVar('--primary-color', '#253980'),
-		'飲める': getCSSVar('--sub-color', '#c8a96e'),
-		'買える': getCSSVar('--accent-color', '#3a6b8c')
-	};
 
 	const hideLayers = [
 		'poi', 'poi-primary', 'poi-r0-r9', 'poi-r10-r24', 'poi-r25',
@@ -44,44 +33,10 @@
 		}
 	}
 
-	function clearMarkers() {
-		for (const m of markers) {
-			m.remove();
-		}
-		markers = [];
-	}
-
-	function addMarkers(map: any, shopData: ShopData[]) {
-		clearMarkers();
-		const { geolonia } = window as any;
-		const geojson = toGeoJson(shopData);
-
-		// South-to-north sort for proper overlap
-		const sorted = [...geojson.features].sort((a, b) => {
-			return b.geometry.coordinates[1] - a.geometry.coordinates[1];
-		});
-
-		for (const feature of sorted) {
-			const cat = feature.properties.primaryCategory || '飲める';
-			const color = CATEGORY_COLORS[cat] || getCSSVar('--sub-color', '#c8a96e');
-
-			const marker = new geolonia.Marker({ color })
-				.setLngLat(feature.geometry.coordinates)
-				.addTo(map);
-
-			marker.getElement().style.cursor = 'pointer';
-			marker.getElement().addEventListener('click', () => {
-				selectedShop = feature.properties as unknown as ShopData;
-			});
-
-			markers.push(marker);
-		}
-	}
-
-	function initClusterAndMarkers(map: any, shopData: ShopData[]) {
+	function addSourceAndLayers(map: any, shopData: ShopData[]) {
 		if (!map || shopData.length === 0) return;
 
-		map.on('render', () => {
+		map.on('render', async () => {
 			if (map.getSource('shops')) return;
 
 			hidePoiLayers(map);
@@ -96,41 +51,16 @@
 				clusterRadius: 25
 			});
 
-			setCluster(map);
-			addMarkers(map, shopData);
-			markersInitialized = true;
+			await setCluster(map);
+			layersInitialized = true;
 
-			// Hide/show markers based on cluster zoom
-			map.on('zoom', () => {
-				updateMarkerVisibility(map);
-			});
-			map.on('moveend', () => {
-				updateMarkerVisibility(map);
+			// Click on unclustered point → show shop detail
+			map.on('click', 'unclustered-point', (e: any) => {
+				if (e.features && e.features.length > 0) {
+					selectedShop = e.features[0].properties as unknown as ShopData;
+				}
 			});
 		});
-	}
-
-	function updateMarkerVisibility(map: any) {
-		const zoom = map.getZoom();
-		const bounds = map.getBounds();
-
-		for (const m of markers) {
-			const lngLat = m.getLngLat();
-			const inBounds = bounds.contains(lngLat);
-			// At cluster zoom levels, query if point is clustered
-			if (zoom <= 14 && inBounds) {
-				const point = map.project(lngLat);
-				const features = map.queryRenderedFeatures(point, { layers: ['clusters'] });
-				const el = m.getElement();
-				if (features.length > 0) {
-					el.style.display = 'none';
-				} else {
-					el.style.display = '';
-				}
-			} else {
-				m.getElement().style.display = inBounds ? '' : 'none';
-			}
-		}
 	}
 
 	function updateMapData(map: any, shopData: ShopData[]) {
@@ -139,7 +69,6 @@
 		if (source) {
 			source.setData(geojson);
 		}
-		addMarkers(map, shopData);
 	}
 
 	function toggleStyle() {
@@ -147,15 +76,12 @@
 		isWarmStyle = !isWarmStyle;
 		const newStyle = isWarmStyle ? WARM_STYLE : BASIC_STYLE;
 
-		// Save current data before style change
 		const currentData = data;
-		markersInitialized = false;
-		clearMarkers();
+		layersInitialized = false;
 
 		mapObject.setStyle(newStyle);
 
-		// After style loads, re-add sources/layers/markers
-		mapObject.once('style.load', () => {
+		mapObject.once('style.load', async () => {
 			if (!isWarmStyle) {
 				hidePoiLayers(mapObject);
 			}
@@ -168,9 +94,14 @@
 					clusterMaxZoom: 14,
 					clusterRadius: 25
 				});
-				setCluster(mapObject);
-				addMarkers(mapObject, currentData);
-				markersInitialized = true;
+				await setCluster(mapObject);
+				layersInitialized = true;
+
+				mapObject.on('click', 'unclustered-point', (e: any) => {
+					if (e.features && e.features.length > 0) {
+						selectedShop = e.features[0].properties as unknown as ShopData;
+					}
+				});
 			}
 		});
 	}
@@ -184,8 +115,8 @@
 
 	$effect(() => {
 		if (mapObject && data.length > 0) {
-			if (!markersInitialized) {
-				initClusterAndMarkers(mapObject, data);
+			if (!layersInitialized) {
+				addSourceAndLayers(mapObject, data);
 			} else {
 				updateMapData(mapObject, data);
 			}
@@ -226,7 +157,6 @@
 		return () => {
 			window.removeEventListener('orientationchange', orientationHandler);
 			map.off('load', onMapLoad);
-			clearMarkers();
 		};
 	});
 

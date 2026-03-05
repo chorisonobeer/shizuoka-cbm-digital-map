@@ -44,7 +44,7 @@ export const shopStore = {
 				if (feature.logo_filename && !feature.logo_filename.startsWith('/')) {
 					feature.logo_filename = `/images/logos/${feature.logo_filename}`;
 				}
-				list.push({ index: i, ...feature });
+				list.push({ ...feature, index: i });
 			}
 
 			list.sort((a, b) => Number(a.number) - Number(b.number));
