@@ -5,9 +5,17 @@ const setCluster = (map: any) => {
 		source: 'shops',
 		filter: ['has', 'point_count'],
 		paint: {
-			'circle-radius': 20,
+			'circle-radius': [
+				'step',
+				['get', 'point_count'],
+				18,   // < 5件
+				5, 22, // 5-9件
+				10, 26 // 10件以上
+			],
 			'circle-color': '#1a2e44',
-			'circle-opacity': 1.0
+			'circle-opacity': 0.85,
+			'circle-stroke-width': 2,
+			'circle-stroke-color': '#ffffff'
 		}
 	});
 
@@ -20,8 +28,8 @@ const setCluster = (map: any) => {
 			'text-color': '#FFFFFF'
 		},
 		layout: {
-			'text-field': '{point_count_abbreviated} 件',
-			'text-size': 12,
+			'text-field': '{point_count_abbreviated}',
+			'text-size': 13,
 			'text-font': ['Noto Sans Regular']
 		}
 	});

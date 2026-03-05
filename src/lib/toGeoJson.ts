@@ -38,6 +38,18 @@ const toGeoJson = (data: Record<string, any>[]): GeoJSON => {
 			feature.properties[key] = item[key];
 		}
 
+		// カテゴリ優先度: 醸造所 > 飲める > 買える
+		const cats = (item.categories || '').split(',').map((c: string) => c.trim());
+		if (cats.includes('醸造所')) {
+			feature.properties.primaryCategory = '醸造所';
+		} else if (cats.includes('飲める')) {
+			feature.properties.primaryCategory = '飲める';
+		} else if (cats.includes('買える')) {
+			feature.properties.primaryCategory = '買える';
+		} else {
+			feature.properties.primaryCategory = '飲める';
+		}
+
 		geojson.features.push(feature);
 	}
 

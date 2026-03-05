@@ -1,48 +1,24 @@
 project: shizuoka-cbm-digital-map
-last_updated: "2026-03-06"
+updated: "2026-03-06"
 
-active:
-  branch: master
-  description: "イベントタブ追加完了"
+# --- 作業中 ---
+current:
+  branch: ""
+  goal: ""
   status: idle
-  todos:
-    completed: []
-    pending:
-      - "_old/ ディレクトリ削除"
-      - "CLAUDE.md アーキテクチャセクション更新"
-      - "a11y 警告修正（img/h2 の interactive event handling）"
-      - "Netlify 本番デプロイ"
+  done: ""
+  pending: []
+  context: ""
 
+# --- 次のタスク候補（優先度順） ---
+next:
+  - "ボトムナビボタン改修（色味変更）"
+  - "スタイルJSON本格運用（Maputnik編集 → GitHub Pages hosting → data-style指定）"
+
+# --- 完了済み（直近5件・1行） ---
 history:
-  - branch: task/20260305-event-page
-    description: "イベントタブ追加（CSV読込・検索・フィルタ・詳細モーダル・優先度ソート）"
-    status: completed
-    date: "2026-03-05"
-  - branch: task/20260305-cache-splash
-    description: "地図キャッシュ化・スプラッシュ画面・全タブCSS切替・About改修"
-    status: completed
-    date: "2026-03-05"
-  - branch: task/20260305-pwa-implementation
-    description: "PWA実装（Service Worker + manifest + インストールバナー）"
-    status: completed
-    date: "2026-03-05"
-  - branch: task/20260305-detail-route-button
-    description: "詳細画面ルートボタン改修・ブランドカラー全面刷新・ローディングUI改善"
-    status: completed
-    date: "2026-03-05"
-  - branch: task/20260305-list-detail-enhancement
-    description: "一覧タブ・詳細ページ情報拡充＋デザインリニューアル"
-    status: completed
-    date: "2026-03-05"
-  - branch: task/20260305-home-filter-ui
-    description: "ホーム画面フィルタUI追加・カテゴリタブ廃止"
-    status: completed
-    date: "2026-03-05"
-  - branch: task/20260305-about-page-content
-    description: "Aboutページを静岡CBMコンテンツに書き換え"
-    status: completed
-    date: "2026-03-05"
-  - branch: task/20260305-pwamap-migration
-    description: "Geolonia PWAMapテンプレートを静岡クラフトビールマップに変換"
-    status: completed
-    date: "2026-03-05"
+  - "2026-03-06 地図ウォームベージュ化(スタイルJSON) + カテゴリ別ピンマーカー + フォント変更 + Skill拡充"
+  - "2026-03-05 イベントタブ追加（CSV読込・検索・フィルタ・詳細モーダル）"
+  - "2026-03-05 キャッシュ・スプラッシュ・全タブCSS切替・About改修"
+  - "2026-03-05 PWA実装（Service Worker + manifest + インストールバナー）"
+  - "2026-03-05 詳細画面ルートボタン・ブランドカラー刷新"
