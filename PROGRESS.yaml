@@ -2,26 +2,29 @@ project: shizuoka-cbm-digital-map
 last_updated: "2026-03-05"
 
 active:
-  branch: task/20260305-detail-route-button
-  description: "詳細画面ルートボタン改修・ブランドカラー全面刷新・ローディングUI改善"
+  branch: task/20260305-pwa-implementation
+  description: "PWA実装（Service Worker + manifest + インストールバナー）"
   status: completed
   todos:
     completed:
-      - "ルートボタン テキスト変更（道順を表示→ここまでのルートを見る）"
-      - "ルートボタン URL変更（Apple Maps→Google Maps）"
-      - "ローディングUI スピナーアニメーション化"
-      - "ブランドカラー6色体系をCSS変数定義"
-      - "全10ファイルのカラー値を新体系に統一"
+      - "manifest.json をブランド情報に更新"
+      - "最小Service Worker作成（static/sw.js）"
+      - "app.html にSW登録・Appleメタタグ追加"
+      - "InstallBanner.svelte 新規作成（24h抑制付き）"
+      - "+layout.svelte にバナー組み込み"
       - "netlify build --offline 検証通過"
       - "報告書作成・コミット"
     pending:
       - "_old/ ディレクトリ削除"
       - "CLAUDE.md アーキテクチャセクション更新"
       - "a11y 警告修正（img/h2 の interactive event handling）"
-      - "PWA Service Worker 設定 (@vite-pwa/sveltekit)"
       - "Netlify 本番デプロイ"
 
 history:
+  - branch: task/20260305-pwa-implementation
+    description: "PWA実装（Service Worker + manifest + インストールバナー）"
+    status: completed
+    date: "2026-03-05"
   - branch: task/20260305-detail-route-button
     description: "詳細画面ルートボタン改修・ブランドカラー全面刷新・ローディングUI改善"
     status: completed

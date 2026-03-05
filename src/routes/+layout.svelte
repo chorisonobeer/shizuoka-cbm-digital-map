@@ -2,6 +2,7 @@
 	import '../app.css';
 	import Tabbar from '$lib/components/Tabbar.svelte';
 	import About from '$lib/components/About.svelte';
+	import InstallBanner from '$lib/components/InstallBanner.svelte';
 
 	let { data, children } = $props();
 </script>
@@ -24,6 +25,8 @@
 		</div>
 	</div>
 </div>
+
+<InstallBanner />
 
 <style>
 	:global(*) {
