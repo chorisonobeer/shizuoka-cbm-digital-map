@@ -3,7 +3,7 @@ last_updated: "2026-03-05"
 
 active:
   branch: task/20260305-cache-splash
-  description: "地図キャッシュ化・スプラッシュ画面・データストアリアクティブ化"
+  description: "地図キャッシュ化・スプラッシュ画面・全タブCSS切替・About改修"
   status: completed
   todos:
     completed:
@@ -22,7 +22,7 @@ active:
 
 history:
   - branch: task/20260305-cache-splash
-    description: "地図キャッシュ化・スプラッシュ画面・データストアリアクティブ化"
+    description: "地図キャッシュ化・スプラッシュ画面・全タブCSS切替・About改修"
     status: completed
     date: "2026-03-05"
   - branch: task/20260305-pwa-implementation

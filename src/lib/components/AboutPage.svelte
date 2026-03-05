@@ -5,9 +5,8 @@
 <div class="about-us">
 	<div class="container">
 		<div class="branding">
-			<div class="image"><img src={config.logo_image_url || '/logo.svg'} alt="SHIZUOKA CRAFT BEER MAP" /></div>
-			<div class="logo">静岡クラフトビアマップ</div>
-			<div class="subtitle">SHIZUOKA CRAFT BEER MAP</div>
+			<div class="image"><img src="/splash_1.webp" alt="SHIZUOKA CRAFT BEER MAP" /></div>
+			<div class="logo">静岡CRAFT BEER MAP</div>
 		</div>
 
 		<section class="welcome">
@@ -66,6 +65,14 @@
 			</p>
 		</section>
 
+		<section class="ad-section">
+			{#each Array(12) as _, i}
+				<div class="ad-banner">
+					<span class="ad-label">広告枠</span>
+				</div>
+			{/each}
+		</section>
+
 		<footer class="credit">
 			<p>静岡市 商業活性化グループ事業補助金採択事業</p>
 			<p class="copyright">&copy; Shizuoka Craft Beer Map</p>
@@ -109,15 +116,9 @@
 		color: var(--primary-color, #1a2e44);
 	}
 
-	.branding .subtitle {
-		font-size: 14px;
-		color: #888;
-		margin-top: 4px;
-	}
-
 	.branding .image {
-		width: 50%;
-		max-width: 200px;
+		width: 70%;
+		max-width: 280px;
 		margin: auto;
 		margin-bottom: 16px;
 	}
@@ -125,6 +126,7 @@
 	.branding .image img {
 		width: 100%;
 		height: auto;
+		border-radius: 12px;
 	}
 
 	section {
@@ -209,6 +211,30 @@
 	.supporter p.contact a {
 		color: var(--primary-color, #1a2e44);
 		font-weight: bold;
+	}
+
+	.ad-section {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin-bottom: 32px;
+	}
+
+	.ad-banner {
+		width: 100%;
+		aspect-ratio: 320 / 100;
+		background: #e5e7eb;
+		border: 2px dashed #9ca3af;
+		border-radius: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.ad-label {
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: #9ca3af;
 	}
 
 	.credit {
