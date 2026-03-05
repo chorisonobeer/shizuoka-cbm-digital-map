@@ -41,7 +41,7 @@
 
 	.description {
 		max-width: 250px;
-		text-shadow: 1px 2px 3px #303030;
+		text-shadow: 1px 2px 3px var(--text-color);
 		word-break: break-all;
 	}
 

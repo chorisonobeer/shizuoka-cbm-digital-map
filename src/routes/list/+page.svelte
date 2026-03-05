@@ -127,7 +127,7 @@
 	.shop-list {
 		height: 100%;
 		overflow-y: auto;
-		background: var(--bg-color, #f5f0e8);
+		background: var(--bg-color);
 		-webkit-overflow-scrolling: touch;
 	}
 
@@ -135,7 +135,7 @@
 		padding: 10px 16px 0;
 		font-size: 0.85rem;
 		font-weight: 600;
-		color: #6b7280;
+		color: var(--muted-color);
 	}
 
 	.card-list {
@@ -154,8 +154,8 @@
 	.spinner {
 		width: 28px;
 		height: 28px;
-		border: 3px solid #e5e7eb;
-		border-top-color: var(--primary-color, #1a2e44);
+		border: 3px solid var(--muted-color);
+		border-top-color: var(--primary-color);
 		border-radius: 50%;
 		animation: spin 0.7s linear infinite;
 	}

@@ -154,7 +154,7 @@
 		border-radius: 10px;
 		overflow: hidden;
 		align-self: center;
-		background: #f3f4f6;
+		background: var(--bg-color);
 	}
 	.card-thumb img {
 		width: 100%;
@@ -175,7 +175,7 @@
 	.card-title {
 		font-size: 16px;
 		font-weight: 700;
-		color: #1a1a1a;
+		color: var(--text-color);
 		margin: 0;
 		line-height: 1.3;
 		letter-spacing: -0.01em;
@@ -201,15 +201,15 @@
 		text-decoration: none;
 	}
 	.tag-area {
-		background: #fef3c7;
-		color: #b45309;
+		background: color-mix(in srgb, var(--sub-color) 20%, white);
+		color: var(--sub-color);
 	}
 	.tag-area:hover {
-		background: #fde68a;
+		background: color-mix(in srgb, var(--sub-color) 30%, white);
 	}
 	.tag-cat {
-		background: #ede9fe;
-		color: #5b21b6;
+		background: color-mix(in srgb, var(--primary-color) 12%, white);
+		color: var(--primary-color);
 	}
 
 	/* ===== Meta — 12px/400 控えめなセカンダリ情報 ===== */
@@ -224,13 +224,13 @@
 		gap: 4px;
 	}
 	.meta-row :global(.meta-icon) {
-		color: #9ca3af;
+		color: var(--muted-color);
 		flex-shrink: 0;
 	}
 	.meta-text {
 		font-size: 12px;
 		font-weight: 400;
-		color: #6b7280;
+		color: var(--muted-color);
 		line-height: 1.5;
 	}
 	.meta-closed .meta-text {
@@ -242,7 +242,7 @@
 	.card-distance {
 		font-size: 12px;
 		font-weight: 600;
-		color: #2563eb;
+		color: var(--accent-color);
 	}
 
 	/* ===== Feature badges — 10px/500 最小の情報レイヤー ===== */
@@ -257,12 +257,12 @@
 		align-items: center;
 		gap: 2px;
 		padding: 2px 6px;
-		background: #f9fafb;
-		border: 1px solid #e5e7eb;
+		background: var(--bg-color);
+		border: 1px solid var(--muted-color);
 		border-radius: 4px;
 		font-size: 10px;
 		font-weight: 500;
-		color: #6b7280;
+		color: var(--muted-color);
 		white-space: nowrap;
 		line-height: 1.5;
 	}
@@ -272,6 +272,6 @@
 		display: flex;
 		align-items: center;
 		flex-shrink: 0;
-		color: #d1d5db;
+		color: var(--muted-color);
 	}
 </style>

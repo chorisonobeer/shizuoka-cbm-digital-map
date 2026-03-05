@@ -271,12 +271,12 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		background: var(--bg-color, #f5f0e8);
+		background: var(--bg-color);
 	}
 
 	/* ===== Header ===== */
 	.header {
-		background: var(--primary-color, #1a2e44);
+		background: var(--primary-color);
 		padding: 10px 12px 0;
 		flex-shrink: 0;
 	}
@@ -336,7 +336,7 @@
 
 	.filter-tab.active {
 		color: #fff;
-		border-bottom-color: var(--sub-color, #c8a96e);
+		border-bottom-color: var(--sub-color);
 	}
 
 	/* ===== Event List ===== */
@@ -360,7 +360,7 @@
 		justify-content: center;
 		gap: 12px;
 		padding: 60px 0;
-		color: #9ca3af;
+		color: var(--muted-color);
 	}
 
 	/* ===== Event Card ===== */
@@ -391,7 +391,7 @@
 		width: 100%;
 		height: 160px;
 		overflow: hidden;
-		background: #f3f4f6;
+		background: var(--bg-color);
 	}
 
 	.card-image img {
@@ -404,7 +404,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: #d1d5db;
+		color: var(--muted-color);
 	}
 
 	.status-badge {
@@ -428,13 +428,13 @@
 	}
 
 	.status-upcoming {
-		background: #dbeafe;
-		color: #2563eb;
+		background: color-mix(in srgb, var(--accent-color) 15%, white);
+		color: var(--accent-color);
 	}
 
 	.status-ended {
-		background: #f3f4f6;
-		color: #9ca3af;
+		background: color-mix(in srgb, var(--muted-color) 15%, white);
+		color: var(--muted-color);
 	}
 
 	.card-body {
@@ -447,7 +447,7 @@
 	.card-title {
 		font-size: 15px;
 		font-weight: 700;
-		color: #1a1a1a;
+		color: var(--text-color);
 		margin: 0;
 		line-height: 1.3;
 	}
@@ -457,7 +457,7 @@
 		align-items: center;
 		gap: 4px;
 		font-size: 12px;
-		color: #6b7280;
+		color: var(--muted-color);
 	}
 
 	.card-tags {
@@ -470,8 +470,8 @@
 	.tag {
 		display: inline-block;
 		padding: 2px 8px;
-		background: #ede9fe;
-		color: #5b21b6;
+		background: color-mix(in srgb, var(--primary-color) 12%, white);
+		color: var(--primary-color);
 		border-radius: 4px;
 		font-size: 11px;
 		font-weight: 600;
@@ -521,7 +521,7 @@
 		width: 100%;
 		height: 220px;
 		overflow: hidden;
-		background: #f3f4f6;
+		background: var(--bg-color);
 	}
 
 	.carousel img {
@@ -580,7 +580,7 @@
 	.modal-title {
 		font-size: 18px;
 		font-weight: 700;
-		color: #1a1a1a;
+		color: var(--text-color);
 		margin: 0;
 		line-height: 1.3;
 	}
@@ -596,7 +596,7 @@
 		align-items: flex-start;
 		gap: 6px;
 		font-size: 13px;
-		color: #4b5563;
+		color: var(--text-color);
 	}
 
 	.meta-label {
@@ -606,7 +606,7 @@
 
 	.modal-desc {
 		font-size: 14px;
-		color: #374151;
+		color: var(--text-color);
 		line-height: 1.7;
 		margin: 0;
 		white-space: pre-wrap;
@@ -615,7 +615,7 @@
 	.breweries h4 {
 		font-size: 13px;
 		font-weight: 600;
-		color: #374151;
+		color: var(--text-color);
 		margin: 0 0 6px;
 	}
 
@@ -627,8 +627,8 @@
 
 	.brewery-tag {
 		padding: 3px 10px;
-		background: #fef3c7;
-		color: #b45309;
+		background: color-mix(in srgb, var(--sub-color) 20%, white);
+		color: var(--sub-color);
 		border-radius: 4px;
 		font-size: 12px;
 		font-weight: 500;
@@ -652,7 +652,7 @@
 		align-items: center;
 		gap: 4px;
 		padding: 8px 14px;
-		background: var(--primary-color, #1a2e44);
+		background: var(--primary-color);
 		color: #fff;
 		border-radius: 8px;
 		font-size: 13px;

@@ -323,7 +323,7 @@
 		position: absolute;
 		inset: 0;
 		z-index: 10;
-		background: var(--bg-color, #f5f0e8);
+		background: var(--bg-color);
 		display: flex;
 		flex-direction: column;
 	}
@@ -372,7 +372,7 @@
 		width: 100%;
 		max-height: 220px;
 		overflow: hidden;
-		background: #e5e5e5;
+		background: var(--bg-color);
 	}
 	.hero img {
 		width: 100%;
@@ -390,7 +390,7 @@
 	.shop-name {
 		font-size: 22px;
 		font-weight: 800;
-		color: #171717;
+		color: var(--text-color);
 		margin: 0 0 2px;
 		line-height: 1.2;
 		letter-spacing: -0.02em;
@@ -401,7 +401,7 @@
 	.brewery-name {
 		font-size: 14px;
 		font-weight: 400;
-		color: #737373;
+		color: var(--muted-color);
 		margin: 0 0 12px;
 		line-height: 1.5;
 	}
@@ -424,16 +424,16 @@
 		line-height: 1.5;
 	}
 	.tag-area {
-		background: #fef3c7;
-		color: #b45309;
+		background: color-mix(in srgb, var(--sub-color) 20%, white);
+		color: var(--sub-color);
 	}
 	.tag-cat {
-		background: #ede9fe;
-		color: #5b21b6;
+		background: color-mix(in srgb, var(--primary-color) 12%, white);
+		color: var(--primary-color);
 	}
 	.tag-dist {
-		background: #dbeafe;
-		color: #1d4ed8;
+		background: color-mix(in srgb, var(--accent-color) 15%, white);
+		color: var(--accent-color);
 	}
 
 	/* ===== Info Card ===== */
@@ -454,13 +454,13 @@
 	}
 	.info-row :global(.info-icon) {
 		flex-shrink: 0;
-		color: #a3a3a3;
+		color: var(--muted-color);
 		margin-top: 1px;
 	}
 	.info-value {
 		font-size: 14px;
 		font-weight: 400;
-		color: #404040;
+		color: var(--text-color);
 		line-height: 1.5;
 	}
 	.closed .info-value {
@@ -485,7 +485,7 @@
 	.section-title {
 		font-size: 13px;
 		font-weight: 700;
-		color: #a3a3a3;
+		color: var(--muted-color);
 		text-transform: uppercase;
 		letter-spacing: 0.06em;
 		margin: 0 0 10px;
@@ -504,11 +504,11 @@
 		gap: 5px;
 		padding: 6px 12px;
 		background: #fff;
-		border: 1px solid #e5e5e5;
+		border: 1px solid var(--muted-color);
 		border-radius: 8px;
 		font-size: 13px;
 		font-weight: 500;
-		color: #404040;
+		color: var(--text-color);
 		line-height: 1.5;
 	}
 
@@ -524,11 +524,11 @@
 		gap: 8px;
 		padding: 10px 16px;
 		background: #fff;
-		border: 1px solid #e5e5e5;
+		border: 1px solid var(--muted-color);
 		border-radius: 10px;
 		font-size: 14px;
 		font-weight: 500;
-		color: #404040;
+		color: var(--text-color);
 		text-decoration: none;
 		transition: border-color 0.15s, box-shadow 0.15s;
 	}
@@ -542,13 +542,13 @@
 	.body-text {
 		font-size: 15px;
 		font-weight: 400;
-		color: #404040;
+		color: var(--text-color);
 		line-height: 1.7;
 		word-break: break-all;
 		margin: 0;
 	}
 	.body-en {
-		color: #737373;
+		color: var(--muted-color);
 		font-size: 14px;
 	}
 

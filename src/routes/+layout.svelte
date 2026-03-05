@@ -120,7 +120,7 @@
 	}
 
 	:global(a) {
-		color: var(--accent-color, #3a6b8c);
+		color: var(--accent-color);
 		text-decoration: none;
 	}
 
@@ -176,7 +176,7 @@
 		border-radius: 20px;
 		overflow: hidden;
 		background-color: #ffffff;
-		border: 3px solid #555555;
+		border: 3px solid var(--muted-color);
 	}
 
 	.app-body {
@@ -189,8 +189,8 @@
 		bottom: 0;
 		width: 100%;
 		height: 56px;
-		background-color: var(--bg-color, #f5f0e8);
-		border-top: 1px solid #d1d5db;
+		background-color: var(--bg-color);
+		border-top: 1px solid var(--muted-color);
 		padding-bottom: env(safe-area-inset-bottom);
 		z-index: 9999;
 	}

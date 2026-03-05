@@ -14,15 +14,20 @@
 	let markersInitialized = $state(false);
 	let selectedShop: ShopData | undefined = $state(undefined);
 	let isWarmStyle = $state(true);
+	let toggleBtn: HTMLButtonElement;
 	let markers: any[] = [];
 
 	const WARM_STYLE = '/map-style.json';
 	const BASIC_STYLE = 'geolonia/basic';
 
+	function getCSSVar(name: string, fallback: string): string {
+		return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+	}
+
 	const CATEGORY_COLORS: Record<string, string> = {
-		'醸造所': '#1a2e44',
-		'飲める': '#c8a96e',
-		'買える': '#3a6b8c'
+		'醸造所': getCSSVar('--primary-color', '#253980'),
+		'飲める': getCSSVar('--sub-color', '#c8a96e'),
+		'買える': getCSSVar('--accent-color', '#3a6b8c')
 	};
 
 	const hideLayers = [
@@ -58,7 +63,7 @@
 
 		for (const feature of sorted) {
 			const cat = feature.properties.primaryCategory || '飲める';
-			const color = CATEGORY_COLORS[cat] || '#c8a96e';
+			const color = CATEGORY_COLORS[cat] || getCSSVar('--sub-color', '#c8a96e');
 
 			const marker = new geolonia.Marker({ color })
 				.setLngLat(feature.geometry.coordinates)
@@ -204,6 +209,13 @@
 
 		const onMapLoad = () => {
 			mapObject = map;
+			// トグルをコントロール群の直下に配置
+			const ctrlContainer = mapNode.querySelector('.maplibregl-ctrl-top-right');
+			if (ctrlContainer && toggleBtn) {
+				const rect = ctrlContainer.getBoundingClientRect();
+				const mapRect = mapNode.getBoundingClientRect();
+				toggleBtn.style.top = `${rect.bottom - mapRect.top + 6}px`;
+			}
 		};
 
 		const orientationHandler = () => map.resize();
@@ -231,8 +243,16 @@
 		data-marker="off"
 		data-gesture-handling="off"
 	></div>
-	<button class="style-toggle" onclick={toggleStyle}>
-		{isWarmStyle ? 'BASIC' : 'CBM'}
+	<button
+		bind:this={toggleBtn}
+		class="style-toggle"
+		class:active={isWarmStyle}
+		onclick={toggleStyle}
+		aria-label={isWarmStyle ? 'BASICスタイルに切替' : 'CBMスタイルに切替'}
+	>
+		<span class="toggle-track">
+			<span class="toggle-thumb"></span>
+		</span>
 	</button>
 	{#if selectedShop}
 		<Shop shop={selectedShop} onclose={closeShop} />
@@ -253,17 +273,44 @@
 
 	.style-toggle {
 		position: absolute;
-		top: 10px;
+		top: 0;
 		right: 10px;
 		z-index: 10;
-		background: #1a2e44;
-		color: #fff;
-		border: 2px solid #fff;
-		border-radius: 6px;
-		padding: 6px 12px;
-		font-size: 12px;
-		font-weight: bold;
+		background: none;
+		border: none;
+		padding: 0;
 		cursor: pointer;
-		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.toggle-track {
+		display: block;
+		width: 36px;
+		height: 20px;
+		border-radius: 10px;
+		background: var(--muted-color);
+		position: relative;
+		transition: background 0.2s ease;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+	}
+
+	.style-toggle.active .toggle-track {
+		background: var(--primary-color);
+	}
+
+	.toggle-thumb {
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: #fff;
+		transition: transform 0.2s ease;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	}
+
+	.style-toggle.active .toggle-thumb {
+		transform: translateX(16px);
 	}
 </style>

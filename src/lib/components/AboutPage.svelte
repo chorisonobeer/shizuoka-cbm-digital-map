@@ -113,7 +113,7 @@
 	.branding .logo {
 		font-size: 24px;
 		font-weight: bold;
-		color: var(--primary-color, #1a2e44);
+		color: var(--primary-color);
 	}
 
 	.branding .image {
@@ -137,8 +137,8 @@
 		font-size: 1.3rem;
 		font-weight: bold;
 		margin-bottom: 12px;
-		color: var(--primary-color, #1a2e44);
-		border-bottom: 2px solid var(--sub-color, #c8a96e);
+		color: var(--primary-color);
+		border-bottom: 2px solid var(--sub-color);
 		padding-bottom: 6px;
 	}
 
@@ -150,7 +150,7 @@
 
 	.welcome-en {
 		font-size: 0.9rem;
-		color: #666;
+		color: var(--muted-color);
 		font-style: italic;
 		margin-bottom: 1rem;
 	}
@@ -167,7 +167,7 @@
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
-		background: var(--primary-color, #1a2e44);
+		background: var(--primary-color);
 		color: #fff;
 		display: flex;
 		align-items: center;
@@ -186,7 +186,7 @@
 	.point p {
 		margin-bottom: 0;
 		font-size: 0.9rem;
-		color: #555;
+		color: var(--muted-color);
 	}
 
 	.tag-list {
@@ -196,7 +196,7 @@
 	}
 
 	.tag {
-		background: var(--primary-color, #1a2e44);
+		background: var(--primary-color);
 		color: #fff;
 		padding: 4px 12px;
 		border-radius: 16px;
@@ -209,7 +209,7 @@
 	}
 
 	.supporter p.contact a {
-		color: var(--primary-color, #1a2e44);
+		color: var(--primary-color);
 		font-weight: bold;
 	}
 
@@ -223,8 +223,8 @@
 	.ad-banner {
 		width: 100%;
 		aspect-ratio: 320 / 100;
-		background: #e5e7eb;
-		border: 2px dashed #9ca3af;
+		background: var(--bg-color);
+		border: 2px dashed var(--muted-color);
 		border-radius: 8px;
 		display: flex;
 		align-items: center;
@@ -234,14 +234,14 @@
 	.ad-label {
 		font-size: 0.9rem;
 		font-weight: 600;
-		color: #9ca3af;
+		color: var(--muted-color);
 	}
 
 	.credit {
 		text-align: center;
-		color: #888;
+		color: var(--muted-color);
 		font-size: 0.85rem;
-		border-top: 1px solid #ddd;
+		border-top: 1px solid var(--muted-color);
 		padding-top: 16px;
 	}
 

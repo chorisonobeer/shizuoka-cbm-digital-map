@@ -88,7 +88,7 @@
 		gap: 8px;
 		padding: 10px 16px;
 		padding-bottom: calc(10px + env(safe-area-inset-bottom));
-		background: var(--primary-color, #1a2e44);
+		background: var(--primary-color);
 		color: #fff;
 		font-size: 13px;
 		z-index: 10000;

@@ -120,8 +120,8 @@
 		display: flex;
 		gap: 6px;
 		padding: 8px;
-		background: var(--bg-color, #f5f0e8);
-		border-bottom: 1px solid #d1d5db;
+		background: var(--bg-color);
+		border-bottom: 1px solid var(--muted-color);
 		align-items: center;
 		z-index: 10;
 	}
@@ -130,10 +130,10 @@
 		flex: 1;
 		padding: 6px 8px;
 		font-size: 13px;
-		border: 1px solid #d1d5db;
+		border: 1px solid var(--muted-color);
 		border-radius: 6px;
 		background: white;
-		color: #374151;
+		color: var(--text-color);
 		appearance: auto;
 		min-width: 0;
 	}
@@ -141,10 +141,10 @@
 	.filter-toggle {
 		padding: 6px 12px;
 		font-size: 13px;
-		border: 2px solid var(--primary-color, #1a2e44);
+		border: 2px solid var(--primary-color);
 		border-radius: 20px;
 		background: white;
-		color: var(--primary-color, #1a2e44);
+		color: var(--primary-color);
 		cursor: pointer;
 		white-space: nowrap;
 		transition: all 0.15s ease;
@@ -152,7 +152,7 @@
 	}
 
 	.filter-toggle.active {
-		background: var(--primary-color, #1a2e44);
+		background: var(--primary-color);
 		color: white;
 	}
 </style>

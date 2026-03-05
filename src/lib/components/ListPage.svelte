@@ -106,7 +106,7 @@
 	.shop-list {
 		height: 100%;
 		overflow-y: auto;
-		background: var(--bg-color, #f5f0e8);
+		background: var(--bg-color);
 		-webkit-overflow-scrolling: touch;
 	}
 
@@ -126,8 +126,8 @@
 	.spinner {
 		width: 28px;
 		height: 28px;
-		border: 3px solid #e5e7eb;
-		border-top-color: var(--primary-color, #1a2e44);
+		border: 3px solid var(--muted-color);
+		border-top-color: var(--primary-color);
 		border-radius: 50%;
 		animation: spin 0.7s linear infinite;
 	}

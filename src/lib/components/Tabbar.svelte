@@ -40,7 +40,7 @@
 		justify-content: space-around;
 		height: 100%;
 		padding: 0 4px;
-		background-color: var(--bg-color, #f5f0e8);
+		background-color: var(--primary-color);
 	}
 
 	.nav-item {
@@ -51,7 +51,7 @@
 		gap: 2px;
 		flex: 1;
 		padding: 6px 0;
-		color: #9ca3af;
+		color: rgba(255, 255, 255, 0.55);
 		text-decoration: none;
 		transition: color 0.15s ease;
 		-webkit-tap-highlight-color: transparent;
@@ -62,11 +62,11 @@
 	}
 
 	.nav-item:hover {
-		color: #6b7280;
+		color: rgba(255, 255, 255, 0.75);
 	}
 
 	.nav-item.active {
-		color: var(--primary-color, #1a2e44);
+		color: #ffffff;
 	}
 
 	.nav-label {

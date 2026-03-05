@@ -12,7 +12,8 @@ const setCluster = (map: any) => {
 				5, 22, // 5-9件
 				10, 26 // 10件以上
 			],
-			'circle-color': '#1a2e44',
+			'circle-color': getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim() || '#253980',
+
 			'circle-opacity': 0.85,
 			'circle-stroke-width': 2,
 			'circle-stroke-color': '#ffffff'
