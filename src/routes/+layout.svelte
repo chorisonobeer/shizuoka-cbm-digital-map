@@ -8,8 +8,10 @@
 	import FilterBar from '$lib/components/FilterBar.svelte';
 	import ListPage from '$lib/components/ListPage.svelte';
 	import ImagesPage from '$lib/components/ImagesPage.svelte';
+	import EventsPage from '$lib/components/EventsPage.svelte';
 	import AboutPage from '$lib/components/AboutPage.svelte';
 	import { shopStore } from '$lib/shopStore.svelte';
+	import { eventStore } from '$lib/eventStore.svelte';
 	import { isOpen } from '$lib/isOpen';
 	import type { ShopData } from '$lib/types';
 
@@ -19,6 +21,7 @@
 
 	onMount(() => {
 		shopStore.initialize(fetch);
+		eventStore.initialize(fetch);
 	});
 
 	// スプラッシュ: データ取得完了でフェードアウト
@@ -88,6 +91,10 @@
 
 				<div class="tab-page tab-page-block" class:visible={activeTab === 'images'}>
 					<ImagesPage />
+				</div>
+
+				<div class="tab-page" class:visible={activeTab === 'events'}>
+					<EventsPage />
 				</div>
 
 				<div class="tab-page tab-page-block" class:visible={activeTab === 'about'}>

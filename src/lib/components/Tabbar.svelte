@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Home, List, Camera, Info } from 'lucide-svelte';
+	import { Home, List, Camera, CalendarDays, Info } from 'lucide-svelte';
 
 	let {
 		activeTab = 'home',
@@ -13,6 +13,7 @@
 		{ id: 'home', icon: Home, label: 'ホーム' },
 		{ id: 'list', icon: List, label: '一覧' },
 		{ id: 'images', icon: Camera, label: '写真' },
+		{ id: 'events', icon: CalendarDays, label: 'イベント' },
 		{ id: 'about', icon: Info, label: '情報' },
 	];
 </script>
