@@ -20,6 +20,8 @@ export type ShopData = {
 	instagram: string;
 	twitter: string;
 	facebook: string;
+	categories: string;
+	brewery_name: string;
 	[key: string]: string | number | undefined;
 };
 

@@ -16,6 +16,7 @@
 	let hasMore = $state(true);
 
 	const queryCategory = $derived(page.url.searchParams.get('category'));
+	const queryTag = $derived(page.url.searchParams.get('tag'));
 
 	async function sortByDistance(shopList: ShopData[]): Promise<ShopData[]> {
 		const currentPosition = await askGeolocationPermission();
@@ -43,6 +44,12 @@
 		let shops = pageData.shopList;
 		if (queryCategory) {
 			shops = shops.filter((s: ShopData) => s.area === queryCategory);
+		}
+		if (queryTag) {
+			shops = shops.filter((s: ShopData) => {
+				if (!s.categories) return false;
+				return s.categories.split(',').map((t: string) => t.trim()).includes(queryTag);
+			});
 		}
 
 		const orderBy = pageData.config?.orderby;
@@ -94,7 +101,10 @@
 	onscroll={handleScroll}
 >
 	{#if queryCategory}
-		<div class="shop-list-category">{`カテゴリ：「${queryCategory}」`}</div>
+		<div class="shop-list-category">{`地域：「${queryCategory}」`}</div>
+	{/if}
+	{#if queryTag}
+		<div class="shop-list-category">{`タイプ：「${queryTag}」`}</div>
 	{/if}
 
 	{#each list as item, index (index)}
