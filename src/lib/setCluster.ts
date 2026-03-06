@@ -113,7 +113,7 @@ const setCluster = async (map: any) => {
 		type: 'symbol',
 		source: 'shops',
 		filter: ['!', ['has', 'point_count']],
-		minzoom: 10,
+		minzoom: 0,
 		layout: {
 			'text-field': ['get', 'name'],
 			'text-font': ['Noto Sans CJK JP Bold'],

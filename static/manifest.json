@@ -1,6 +1,6 @@
 {
   "short_name": "静岡CBM",
-  "name": "静岡クラフトビールマップ",
+  "name": "静岡CRAFT BEER MAP",
   "icons": [
     {
       "src": "manifest-icon-192.maskable.png",
@@ -31,5 +31,5 @@
   "scope": "/",
   "display": "standalone",
   "theme_color": "#1a2e44",
-  "background_color": "#f5f0e8"
+  "background_color": "#E7E7E5"
 }
