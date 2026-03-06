@@ -19,27 +19,11 @@
 	const WARM_STYLE = '/map-style.json';
 	const BASIC_STYLE = 'geolonia/basic';
 
-	const hideLayers = [
-		'poi', 'poi-primary', 'poi-r0-r9', 'poi-r10-r24', 'poi-r25',
-		'poi-bus', 'poi-entrance',
-		'poi-z16', 'poi-z16-primary', 'poi-z15', 'poi-z14', 'poi-z11',
-		'poi-worship', 'poi-worship-primary', 'poi-park', 'poi-park-primary',
-		'poi-railway', 'poi-airport-primary', 'poi-mountain'
-	];
-
-	function hidePoiLayers(map: any) {
-		for (const layerId of hideLayers) {
-			try { map.setLayoutProperty(layerId, 'visibility', 'none'); } catch (_) {}
-		}
-	}
-
 	function addSourceAndLayers(map: any, shopData: ShopData[]) {
 		if (!map || shopData.length === 0) return;
 
 		map.on('render', async () => {
 			if (map.getSource('shops')) return;
-
-			hidePoiLayers(map);
 
 			const geojson = toGeoJson(shopData);
 
@@ -82,9 +66,6 @@
 		mapObject.setStyle(newStyle);
 
 		mapObject.once('style.load', async () => {
-			if (!isWarmStyle) {
-				hidePoiLayers(mapObject);
-			}
 			if (currentData.length > 0) {
 				const geojson = toGeoJson(currentData);
 				mapObject.addSource('shops', {
