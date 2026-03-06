@@ -153,29 +153,28 @@
 
 <!-- 詳細モーダル -->
 {#if selectedEvent}
+	{@const images = getImages(selectedEvent)}
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
-	<div class="modal-overlay" role="dialog" aria-modal="true" onclick={closeDetail}>
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<div class="modal" role="document" onclick={(e) => e.stopPropagation()}>
+	<div class="modal-overlay" role="dialog" aria-modal="true" tabindex="-1" onclick={(e) => e.target === e.currentTarget && closeDetail()}>
+		<div class="modal" role="document">
 			<button class="modal-close" onclick={closeDetail}>
 				<X size={20} />
 			</button>
 
 			<!-- 画像カルーセル -->
-			{#if getImages(selectedEvent).length > 0}
+			{#if images.length > 0}
 				<div class="carousel">
-					<img src={getImages(selectedEvent)[carouselIndex]} alt="" />
-					{#if getImages(selectedEvent).length > 1}
-						<button class="carousel-btn carousel-prev" onclick={() => carouselIndex = (carouselIndex - 1 + getImages(selectedEvent).length) % getImages(selectedEvent).length}>
+					<img src={images[carouselIndex]} alt="" />
+					{#if images.length > 1}
+						<button class="carousel-btn carousel-prev" onclick={() => carouselIndex = (carouselIndex - 1 + images.length) % images.length}>
 							<ChevronLeft size={20} />
 						</button>
-						<button class="carousel-btn carousel-next" onclick={() => carouselIndex = (carouselIndex + 1) % getImages(selectedEvent).length}>
+						<button class="carousel-btn carousel-next" onclick={() => carouselIndex = (carouselIndex + 1) % images.length}>
 							<ChevronRight size={20} />
 						</button>
 						<div class="carousel-dots">
-							{#each getImages(selectedEvent) as _, i}
+							{#each images as _, i}
 								<span class="dot" class:active={i === carouselIndex}></span>
 							{/each}
 						</div>
@@ -336,6 +335,7 @@
 
 	.filter-tab.active {
 		color: #fff;
+		border-radius: 20px 20px 20px;
 		border-bottom-color: var(--sub-color);
 	}
 
